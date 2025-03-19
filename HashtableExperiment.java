@@ -61,9 +61,9 @@ public class HashtableExperiment {
     /**
      * Populates array with HashObjects to be processed in the
      * hash table
-     * @param dataSource source of data to add to HashObjects array
+     * @param dataSource source of data to add to HashObjects list
      * @param numElements amount of data to be added for cases 1 or 2 because it is not a predefined data set
-     * @return array of HashObjects
+     * @return list of HashObjects
      * @throws IOException
      */
     private static List<HashObject> generateData(int dataSource, int numElements) throws IOException {
@@ -108,7 +108,7 @@ public class HashtableExperiment {
      * @param label type of hashing being used
      * @param table hash table to be experimented 
      * @param numElements size of hash table
-     * @param objects array of HashObjects to be inserted
+     * @param objects list of HashObjects to be inserted
      * @param debugLevel debug level
      * @param dumpFileName file name for table to be written to
      * @throws IOException
@@ -117,18 +117,18 @@ public class HashtableExperiment {
         System.out.println(label);
 
         int insertedObjects = 0;
-        int tempIdx = 0;
+        int i = 0;
 
-        while (insertedObjects < numElements  && tempIdx < objects.size()) 
+        while (insertedObjects < numElements  && i < objects.size()) 
         {
-            Object key = objects.get(tempIdx).getKey();
-            int idx = table.insert(key);
+            Object key = objects.get(i).getKey();
+            int j = table.insert(key);
 
-            if (idx != -1) 
+            if (j != -1) 
             {
                 insertedObjects++;
             }
-            tempIdx++;
+            i++;
         }
 
         int insertions = table.getTotalInsertions();
