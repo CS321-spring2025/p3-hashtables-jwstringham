@@ -3,42 +3,41 @@ public class HashObject {
     private int probeCount;
     private Object key;
 
-    public HashObject(Object key)
-    {
+    public HashObject(Object key) { 
         this.key = key;
         this.frequencyCount = 1;
         this.probeCount = 0;
     }
 
-    public boolean equals(Object key)
-    {
-        if(this.key.equals(key))
-        {
-            return true;
+    public boolean equals(Object obj) {
+        if (obj instanceof HashObject) {
+            return ((HashObject) obj).getKey().equals(key);
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
-    public Object getKey() 
-    {
+    public Object getKey() {
         return key;
     }
 
-    public void incrementFrequency() 
-    {
+    public int getFrequency() {
+        return frequencyCount;
+    }
+
+    public int getProbeCount() {
+        return probeCount;
+    }
+
+    public void incrementFrequency() {
         frequencyCount++;
     }
 
-    public void incrementProbeCount() 
+    public void setProbeCount(int probeCount)
     {
-        probeCount++;
+        this.probeCount = probeCount;
     }
 
-    public String toString() 
-    {
-        return "Key: " + key + ", Frequency: " + frequencyCount + ", Probe Count: " + probeCount;
+    public String toString() {
+        return key.toString() + " " + frequencyCount + " " + probeCount;
     }
 }
