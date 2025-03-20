@@ -127,6 +127,15 @@ public class HashtableExperiment {
             if (j != -1) 
             {
                 insertedObjects++;
+
+                if (debugLevel == 2) {
+                    System.out.println("Inserting Key: " + key);
+                    System.out.println(" - Hash Index: " + j);
+                    System.out.println(" - Total Insertions: " + table.getTotalInsertions());
+                    System.out.println(" - Duplicates: " + table.getTotalDuplicates());
+                    System.out.println(" - Average Probes: " + String.format("%.2f", table.getAverageProbes()));
+                    System.out.println("----------------------------------------------------");
+                }
             }
             i++;
         }
@@ -136,7 +145,7 @@ public class HashtableExperiment {
         System.out.println("Inserted " + insertions + " elements, of which " + duplicates + " were duplicates");
         System.out.printf("Avg. no. of probes = %.2f%n", table.getAverageProbes());
 
-        if (debugLevel == 1) 
+        if (debugLevel == 1 || debugLevel == 2) 
         {
             table.dumpToFile(dumpFileName);
             System.out.println("HashtableExperiment: Saved dump of hash table");
